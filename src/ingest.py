@@ -29,10 +29,10 @@ enriched = [
     for d in splits
 ]    
 
-ids = [f"doc-{i}" for i in range(1, len(enriched))]
+ids = [f"doc-{i}" for i in range(len(enriched))]
 
 
-embeddings = OpenAIEmbeddings(model=os.getenv("OPENAI_MODEL","text-embedding-3-small"))
+embeddings = OpenAIEmbeddings(model=os.getenv("OPENAI_EMBEDDING_MODEL","text-embedding-3-small"))
 
 store = PGVector(
     embeddings=embeddings,
