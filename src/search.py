@@ -31,12 +31,12 @@ RESPONDA A "PERGUNTA DO USUÁRIO"
 """
 
 load_dotenv()
-for k in ("OPENAI_API_KEY", "PGVECTOR_URL"):
+for k in ("OPENAI_API_KEY", "PGVECTOR_URL", "PGVECTOR_COLLECTION"):
     if not os.getenv(k):
         raise RuntimeError(f"Environment variable {k} is not set")
 
 
-embeddings = OpenAIEmbeddings(model=os.getenv("OPENAI_MODEL","text-embedding-3-small"))
+embeddings = OpenAIEmbeddings(model=os.getenv("OPENAI_EMBEDDING_MODEL","text-embedding-3-small"))
 
 vector_store = PGVector(
     embeddings=embeddings,
@@ -46,7 +46,7 @@ vector_store = PGVector(
 )
 
 llm = ChatOpenAI(
-    model="gpt-4o-mini",
+    model="gpt-5-nano",
     temperature=0,
 )
 
